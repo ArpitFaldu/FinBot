@@ -1,5 +1,4 @@
 import bedrockClient from './bedrock';
-import pineconeIndex from './pinecone';
 import { InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
 
 export async function getEmbedding(text) {

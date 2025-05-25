@@ -1,4 +1,4 @@
-import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
+import { BedrockRuntimeClient } from '@aws-sdk/client-bedrock-runtime';
 
 const bedrockClient = new BedrockRuntimeClient({
   region: process.env.AWS_REGION,

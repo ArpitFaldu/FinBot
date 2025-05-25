@@ -2,6 +2,7 @@
 
 import styles from './styles.module.css';
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -17,45 +18,45 @@ export default function Home() {
   }, [messages]);
 
   useEffect(() => {
-    // Ensure content is scrolled to top on initial load
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
     }
   }, []);
 
   const sendMessage = async () => {
-  if (!input.trim()) return;
+    if (!input.trim()) return;
 
-  const userMessage = input;
-  setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
-  setInput('');
+    const userMessage = input;
+    setMessages((prev) => [...prev, { from: 'user', text: userMessage }]);
+    setInput('');
 
-  try {
-    const res = await fetch('/api/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: userMessage }),
-    });
+    try {
+      const res = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: userMessage }),
+      });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      
+      if (data.error) {
+        setMessages((prev) => [...prev, { from: 'bot', text: `Error: ${data.error}` }]);
+      } else {
+        setMessages((prev) => [...prev, { from: 'bot', text: data.answer }]);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      setMessages((prev) => [...prev, { 
+        from: 'bot', 
+        text: error instanceof Error ? error.message : 'Network error. Please try again.' 
+      }]);
     }
+  };
 
-    const data = await res.json();
-    
-    if (data.error) {
-      setMessages((prev) => [...prev, { from: 'bot', text: `Error: ${data.error}` }]);
-    } else {
-      setMessages((prev) => [...prev, { from: 'bot', text: data.answer }]);
-    }
-  } catch (error) {
-    console.error('Fetch error:', error);
-    setMessages((prev) => [...prev, { 
-      from: 'bot', 
-      text: error instanceof Error ? error.message : 'Network error. Please try again.' 
-    }]);
-  }
-};
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -69,12 +70,13 @@ export default function Home() {
         <div className={styles.headerSection}>
           <div className={styles.backgroundWrapper} />
           <div className={styles.overlay} />
-          <img
+          <Image
             className={styles.logo}
             src="/finance_logo.jpg"
             alt="FinBot Logo"
-            draggable={false}
             width={250}
+            height={250}
+            draggable={false}
           />
           <h1 className={styles.brandTitle}>FinBot</h1>
           <p className={styles.subheading}>Your Personal Financial Advisor</p>
@@ -87,10 +89,11 @@ export default function Home() {
               
               <p>To get the best answers, try to be specific with your questions:</p>
               <ul>
-                <li>"How to save tax legally?"</li>
-                <li>"Best SIP plans for beginners?"</li>
-                <li>"How to create a monthly budget?"</li>
+                <li>&quot;How to save tax legally?&quot;</li>
+                <li>&quot;Best SIP plans for beginners?&quot;</li>
+                <li>&quot;How to create a monthly budget?&quot;</li>
               </ul>
+
 
               <p>
               1. Personal Finance Assistant:
