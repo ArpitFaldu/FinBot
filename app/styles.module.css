@@ -1,0 +1,262 @@
+.page {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(90deg, #f9fafb, #e3e8ef);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a1a1a;
+}
+
+.leftPane {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+  background: #273c75;
+  color: #fff;
+  padding: 1rem;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.headerSection {
+  width: 100%;
+  height: 40vh;
+  min-height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/finance_gif.gif') center center / cover no-repeat;
+  border-radius: 15px;
+  z-index: 1;
+  filter: brightness(0.8);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(39, 60, 117, 0.5);
+  border-radius: 15px;
+  z-index: 2;
+}
+
+.contentSection {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.scrollableContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
+
+.infoBox {
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.infoBox p {
+  margin-bottom: 1.2rem;
+}
+
+.infoBox ul {
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
+}
+
+.infoBox li {
+  margin-bottom: 0.5rem;
+}
+
+.scrollableContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollableContent::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.logo {
+  position: relative;
+  z-index: 3;
+  width: 250px;
+  max-width: 80%;
+  margin-bottom: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffb142;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.3);
+}
+
+.brandTitle {
+  position: relative;
+  z-index: 3;
+  user-select: none;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  font-family: 'Georgia', serif;
+}
+
+.subheading {
+  position: relative;
+  z-index: 3;
+  user-select: none;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  font-size: 1.3rem;
+  color: #f0f0f0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+
+.rightPane {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 3rem 3rem 2rem;
+  min-width: 360px;
+  background: #ffffff;
+  box-shadow: -5px 0 15px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 0 20px 20px 0;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.chatBox {
+  max-width: 550px;
+  width: 100%;
+  background: #f9f9fb;
+  border-radius: 15px;
+  padding: 1.8rem 1.5rem 1rem;
+  box-shadow: 0 10px 20px -7px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.chatBox h2 {
+  font-weight: 700;
+  font-size: 2.1rem;
+  margin-bottom: 0.3rem;
+  color: #3c3c3c;
+  user-select: none;
+  letter-spacing: 0.6px;
+}
+
+.chatIntro {
+  margin-bottom: 1.1rem;
+  font-weight: 500;
+  color: #777;
+  font-style: italic;
+}
+
+.chatArea {
+  flex-grow: 1;
+  min-height: 280px;
+  max-height: 480px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding-right: 8px;
+  font-size: 1rem;
+}
+
+.chatBubbleUser,
+.chatBubbleBot {
+  max-width: 80%;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 0.75rem;
+  border-radius: 18px;
+  line-height: 1.3;
+  user-select: text;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.12);
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+}
+
+.chatBubbleUser {
+  background: #3b82f6;
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+.chatBubbleBot {
+  background: #e1e8ff;
+  color: #2d2d2d;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.inputArea {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 0.85rem 1.1rem;
+  border-radius: 30px;
+  border: 1.5px solid #bbb;
+  font-size: 1rem;
+  resize: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6a0;
+}
+
+.button {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 0.85rem 1.9rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  user-select: none;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: #265bb5;
+}
